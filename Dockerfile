@@ -15,12 +15,9 @@ RUN apt-get update && \
   /venv/bin/pip install "poetry==${POETRY_VERSION}"
 
 # Build the requirements.txt file as a separate step: Only re-execute this step when pyproject.toml or poetry.lock change
-FROM build AS build-requirements
+FROM build AS build-venv
 COPY pyproject.toml poetry.lock /
 RUN /venv/bin/poetry export --with-credentials --format requirements.txt --output /requirements.txt
-
-FROM build as build-venv
-COPY --from=build-requirements /requirements.txt /requirements.txt
 RUN /venv/bin/pip install --disable-pip-version-check -r /requirements.txt
 
 FROM gcr.io/distroless/python3-debian11 AS runtime
