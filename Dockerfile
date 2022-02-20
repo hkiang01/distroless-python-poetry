@@ -22,7 +22,7 @@ RUN /venv/bin/pip install --disable-pip-version-check -r /requirements.txt
 
 FROM gcr.io/distroless/python3-debian11 AS runtime
 COPY --from=build-venv /venv /venv
-COPY ./app /app/app
 WORKDIR /app
+COPY ./app ./app
 EXPOSE 80
 ENTRYPOINT ["/venv/bin/uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
