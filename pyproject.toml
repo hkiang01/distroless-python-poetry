@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "distroless-python-poetry"
+version = "0.1.0"
+description = ""
+authors = ["Harrison Kiang <hkiang01@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = {version = "^0.74.0", extras = ["all"]}
+
+[tool.poetry.dev-dependencies]
+flake8 = "^4.0.1"
+black = "^22.1.0"
+
+[build-system]
+requires = ["poetry-core>=1.1.0"]
+build-backend = "poetry.core.masonry.api"
